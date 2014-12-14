@@ -12,8 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//--= require turbolinks
 //= require angular
+//= require angular-route
+//--= ---require angular-ui-router
 //= require angular-animate
+//--= require angular-animate
 //= require angular-resource
+//= require angular-rails-templates
+//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
+//= require ./tasks-app/tasks-app
+//--= require_tree ./tasks-app/modules
+//--= require_tree ./tasks-app/filters
+//--= require_tree ./tasks-app/directives
+//--= require_tree ./tasks-app/models
+//--= require_tree ./tasks-app/services
+//--= require_tree ./tasks-app/controllers
 //= require_tree .
+//= require_tree ../templates

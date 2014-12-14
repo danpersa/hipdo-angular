@@ -26,8 +26,8 @@ gem 'active_model_serializers'
 gem 'acts_as_list'
 
 gem 'jquery-ui-rails'
-gem 'angularjs-rails', '~> 1.3.36'
 gem 'bower-rails'
+gem 'angular-rails-templates'
 
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
