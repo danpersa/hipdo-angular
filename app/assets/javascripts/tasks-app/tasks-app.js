@@ -57,6 +57,11 @@
           templateUrl: 'home.html',
           controller: 'HomeController'
       });
+
+      $routeProvider.when('/tasks', {
+          templateUrl: 'tasks.html',
+          controller: 'TasksController'
+      });
     }
   ]);
 
@@ -64,4 +69,27 @@
     $scope.header = 'The best tasks app';
     $scope.messages = ['M1', 'M2', 'M3'];
   });
+
+  tasksApp.controller('TasksController', function($scope, TasksService) {
+    $scope.init = function() {
+      return $scope.tasks = TasksService.all();
+    }
+  });
+
+  tasksApp.service('TasksService', function() {
+    this.all = function() {
+      return [
+        {
+          id: 1,
+          description: 'This is the first task'
+        },
+        {
+          id: 2,
+          description: 'This is the second task'
+        }
+      ];
+    };
+  });
+
+
 })();
