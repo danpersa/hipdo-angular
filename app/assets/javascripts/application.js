@@ -10,23 +10,20 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//--= require turbolinks
+//-----=----- require jquery
+//----=----- require jquery_ujs
+//= require jquery/dist/jquery
+//= require jquery-ui/ui/datepicker
+//---=---= require turbolinks
 //= require angular
 //= require angular-route
-//--= ---require angular-ui-router
 //= require angular-animate
-//--= require angular-animate
 //= require angular-resource
+//= require angular-xeditable/dist/js/xeditable
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 //= require ./tasks-app/tasks-app
-//--= require_tree ./tasks-app/modules
-//--= require_tree ./tasks-app/filters
-//--= require_tree ./tasks-app/directives
-//--= require_tree ./tasks-app/models
-//--= require_tree ./tasks-app/services
-//--= require_tree ./tasks-app/controllers
+//= require_tree ./tasks-app/controllers
+//= require_tree ./tasks-app/services
 //= require_tree .
 //= require_tree ../templates

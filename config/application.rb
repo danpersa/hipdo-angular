@@ -28,18 +28,13 @@ module Hipdo
     # config.i18n.default_locale = :de
 
     # config.assets.paths << Rails.root.join("vendor","assets","bower_components")
-    # config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+    config.assets.paths << Rails.root.join("lib", "assets", "bower_components")
 
-    # config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
-
-    # Bower asset paths
-    root.join('vendor', 'assets', 'bower_components').to_s.tap do |bower_path|
-    config.sass.load_paths << bower_path
-    config.assets.paths << bower_path
     # Precompile Bootstrap fonts
-    # config.assets.precompile << %r(bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff)$)
+    config.assets.precompile << %r(bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff)$)
+    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "jquery-ui", "themes", "flick").to_s
     # Minimum Sass number precision required by bootstrap-sass
     ::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
-end
   end
 end
