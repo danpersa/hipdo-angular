@@ -20,4 +20,14 @@ angular.module('tasksApp').service('TagGroupsService', function() {
   this.all = function() {
     return this.tagGroups;
   }
+
+  this.get = function(groupKey) {
+    var index;
+    for (index = 0; index < this.tagGroups.length; ++index) {
+      if (this.tagGroups[index].key == groupKey) {
+        return this.tagGroups[index];
+      }
+    }
+    return null;
+  }
 });

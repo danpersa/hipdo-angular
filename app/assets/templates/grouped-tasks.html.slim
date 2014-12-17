@@ -4,7 +4,7 @@
       div.panel.panel-default.dashboard-list(ng-repeat="tagGroup in tagGroups")
         div.panel-heading
           h4
-          | {{tagGroup.name}}
+            | {{tagGroup.name}}
         ul.nav.nav-pills.nav-stacked(ng-show="tagGroup.tags == 0")
           li
           ' You haven't created any tags yet.
@@ -12,19 +12,19 @@
           li(ng-repeat="tag in tagGroup.tags" ng-class="{active: isTagSelected(tag)}")
             a.list-group-item(href="#"  ng-click="toggleTag(tag)") {{ tag || "empty" }}
     .col-md-8.col-xs-8
-      div.panel.panel-default.dashboard-list
+      div.panel.panel-default.dashboard-list(ng-repeat="tag in tags")
         div.panel-heading
-          h4 Your tasks
-        form#new-task(ng-submit="createTask()")
+          h4 ~ {{tag}}
+        form#new-task(ng-submit="createTask(tag)")
           .input-group
-            input#taskName.form-control.input-lg(type="text" autofocus="autofocus" placeholder="Name" maxlength="255" ng-model="taskName" data-non-blank)
+            input#taskName.form-control.input-lg(type="text" autofocus="autofocus" placeholder="Name" maxlength="255" ng-model="taskNames[tag]" data-non-blank)
             span.input-group-btn
               button.btn.btn-primary.btn-lg(type="submit") add
-        ul.list-group(ng-show="tasks == 0")
+        ul.list-group(ng-show="groupedTasks[tag] == 0")
           li.list-group-item
             ' You haven't created any tasks yet.
         ul.list-group
-          li.list-group-item(ng-repeat="task in tasks")
+          li.list-group-item(ng-repeat="task in groupedTasks[tag]")
             .div.row
               .div.col-md-10.col-xs-8
                 a href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" {{ task.name || "empty" }}

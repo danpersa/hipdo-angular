@@ -8,4 +8,12 @@ angular.module('tasksApp').service('LocationService', function($location, Select
       $location.url('/tasks/?tags=' + selectedTags);
     }
   }
+
+  this.tasks = function() {
+    $location.url('/tasks/');
+  }
+
+  this.groupedTasks = function(groupKey) {
+    $location.url('/grouped-tasks/' + groupKey);
+  }
 });

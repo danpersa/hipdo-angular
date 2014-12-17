@@ -4,7 +4,7 @@
       div.panel.panel-default.dashboard-list(ng-repeat="tagGroup in tagGroups")
         div.panel-heading
           h4
-          | {{tagGroup.name}}
+            a(ng-click="navigateToGroupedTasks(tagGroup.key)") {{tagGroup.name}}
         ul.nav.nav-pills.nav-stacked(ng-show="tagGroup.tags == 0")
           li
           ' You haven't created any tags yet.

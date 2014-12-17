@@ -1,8 +1,8 @@
-angular.module('tasksApp').controller('TasksController', function($scope, TasksService, SelectedTagsService) {
+angular.module('tasksApp').controller('TasksController', function($scope, TasksService, SelectedTagsService, LocationService) {
   $scope.init = function() {
     SelectedTagsService.init();
     var selectedTags = SelectedTagsService.all();
-    $scope.tasks = TasksService.filterByTag(selectedTags);
+    $scope.tasks = TasksService.byTags(selectedTags);
   }
 
   $scope.createTask = function() {
@@ -36,5 +36,9 @@ angular.module('tasksApp').controller('TasksController', function($scope, TasksS
     console.log('Update Task Description: [' + newTaskDescription + '] old task name: ' + task.description);
     task.description = newTaskDescription;
     TasksService.update(task);
+  }
+
+  $scope.navigateToGroupedTasks = function(groupKey) {
+    LocationService.groupedTasks(groupKey);
   }
 });
