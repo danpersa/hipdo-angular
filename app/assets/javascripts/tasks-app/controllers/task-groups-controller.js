@@ -1,4 +1,4 @@
-angular.module('tasksApp').controller('TaskGroupsController', function($scope, $location, $routeParams, SelectedTagsService, TagGroupsService) {
+angular.module('tasksApp').controller('TaskGroupsController', function($scope, LocationService, SelectedTagsService, TagGroupsService) {
 
   $scope.init = function() {
     $scope.tagGroups = TagGroupsService.all();
@@ -7,15 +7,7 @@ angular.module('tasksApp').controller('TaskGroupsController', function($scope, $
 
   $scope.toggleTag = function(tag) {
     SelectedTagsService.toggleTag(tag);
-    $scope.updateUrl();
-  }
-
-  $scope.updateUrl = function() {
-    if ($scope.selectedTags.length == 0) {
-      $location.url('/tasks/');
-    } else {
-      $location.url('/tasks/?tags=' + $scope.selectedTags);
-    }
+    LocationService.updateUrl();
   }
 
   $scope.isTagActive = function(tag) {
