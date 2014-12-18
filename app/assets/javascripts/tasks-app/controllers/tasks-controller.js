@@ -11,7 +11,6 @@ angular.module('tasksApp').controller('TasksController', function($scope, TasksS
       description: $scope.taskDescription
     });
 
-    $scope.tasks.unshift(newTask);
     $scope.taskName = "";
     $scope.taskDescription = "";
   }
@@ -38,7 +37,8 @@ angular.module('tasksApp').controller('TasksController', function($scope, TasksS
     TasksService.update(task);
   }
 
-  $scope.navigateToGroupedTasks = function(groupKey) {
-    LocationService.groupedTasks(groupKey);
+  $scope.toggleTaskCompleted = function(task) {
+    task.completed = !task.completed;
+    TasksService.update(task);
   }
 });

@@ -1,17 +1,35 @@
 .ng-cloak(ng-init="init()")
   .row
-    .col-md-4.col-xs-4
-      div.panel.panel-default.dashboard-list(ng-repeat="tagGroup in tagGroups")
+    .col-md-4.col-xs-4(ng-controller="TagGroupsController" ng-init="init()")
+      form.flat-form(ng-submit="createTagGroup()")
+        .input-group
+          input#tagGroupName.form-control.input-lg(type="text" placeholder="Tag Group Name" maxlength="255" ng-model="tagGroupName" data-non-blank)
+          span.input-group-btn
+            button.btn.btn-warning.btn-lg(type="submit") add
+      br
+
+      div.panel.panel-default.tag-list(ng-repeat="tagGroup in tagGroups track by tagGroup.key")
         div.panel-heading
           h4
-            | {{tagGroup.name}}
-        ul.nav.nav-pills.nav-stacked(ng-show="tagGroup.tags == 0")
-          li
-          ' You haven't created any tags yet.
-        ul.nav.nav-pills.nav-stacked
-          li(ng-repeat="tag in tagGroup.tags" ng-class="{active: isTagSelected(tag)}")
-            a.list-group-item(href="#"  ng-click="toggleTag(tag)") {{ tag || "empty" }}
+            a(ng-click="navigateToGroupedTasks(tagGroup.key)") {{tagGroup.name}}
+            a(ng-click="toggleTagGroupPanel(tagGroup.key)")
+              span.glyphicon.glyphicon-resize-small.pull-right(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
+              span.glyphicon.glyphicon-resize-full.pull-right(ng-show="isTagGroupPanelCollapsed(tagGroup.key)")
+        form.flat-form.new-tag(ng-submit="addTagToGroup(tagGroup.key)" ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
+          .input-group
+            input.form-control.input-lg(type="text" placeholder="Tag Name" maxlength="255" ng-model="tagNames[tagGroup.key]" data-non-blank)
+            span.input-group-btn
+              button.btn.btn-success.btn-lg(type="submit") add
+        div.panel-body(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
+          ul.nav.nav-pills.nav-stacked(ng-show="tagGroup.tags == 0")
+            li
+            ' You haven't created any tags yet.
+          ul.nav.nav-pills.nav-stacked
+            li(ng-repeat="tag in tagGroup.tags" ng-class="{active: isTagActive(tag)}")
+              a.list-group-item(href="#"  ng-click="toggleTag(tag)") {{ tag || "empty" }}
     .col-md-8.col-xs-8
+      h3
+        | {{groupName}}
       div.panel.panel-default.dashboard-list(ng-repeat="tag in tags")
         div.panel-heading
           h4 ~ {{tag}}
@@ -25,16 +43,15 @@
             ' You haven't created any tasks yet.
         ul.list-group
           li.list-group-item(ng-repeat="task in groupedTasks[tag]")
-            .div.row
-              .div.col-md-10.col-xs-8
-                a href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" {{ task.name || "empty" }}
-              .div.col-md-2.col-xs-4
-                .task-buttons.pull-right
-                  button.btn.btn-danger.btn-xs.pull-right(type="button" ng-click="deleteTask(task, $index)")
-                    span.glyphicon.glyphicon-ban-circle
-                  calendar(model="task.dueDate" on-change="updateDueDate(task)")
-                    button.btn.btn-info.btn-xs.pull-right(type="button")
-                      span.glyphicon.glyphicon-time
+            a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completed}" {{ task.name || "empty" }}
+            .task-buttons.pull-right
+              .btn-group(role="group")
+                button.btn(type="button" ng-click="toggleTaskCompleted(task)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
+                  span.glyphicon.glyphicon-ok
+                calendar(model="task.dueDate" on-change="updateDueDate(task)")
+                  span.glyphicon.glyphicon-time
+                button.btn.btn-danger.last-button(type="button" ng-click="deleteTask(task, $index)")
+                  span.glyphicon.glyphicon-trash
             .task-date(ng-show="task.dueDate")
               small
                 ' Date: {{task.dueDate | date : 'yyyy-MM-dd' }}

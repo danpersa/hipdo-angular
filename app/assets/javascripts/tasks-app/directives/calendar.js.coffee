@@ -2,7 +2,7 @@ angular.module('tasksApp').directive 'calendar', ->
   restrict: 'E'
   transclude: true
   replace: true
-  template: '<div ng-transclude class="calendar-button"></div>'
+  template: '<button ng-transclude class="btn btn-info" type="button"></button>'
   scope:
     model: '='
     onChange: '&'

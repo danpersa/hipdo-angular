@@ -7,6 +7,8 @@ function($scope, $routeParams, GroupedTasksService, SelectedTagsService, TagGrou
     $scope.groupedTasks = GroupedTasksService.byGroupKey(groupKey);
     $scope.tags = TagGroupsService.get(groupKey).tags;
     $scope.taskNames = {};
+    var group = TagGroupsService.get(groupKey);
+    $scope.groupName = group.name;
   }
 
   $scope.createTask = function(tag) {
@@ -15,7 +17,16 @@ function($scope, $routeParams, GroupedTasksService, SelectedTagsService, TagGrou
       tags: [tag]
     });
 
-    $scope.groupedTasks[tag].unshift(newTask);
+    if (angular.isDefined($scope.groupedTasks[tag])) {
+      $scope.groupedTasks[tag].unshift(newTask);
+    } else {
+      $scope.groupedTasks[tag] = [ newTask ];
+    }
     $scope.taskNames[tag] = "";
+  }
+
+  $scope.toggleTaskCompleted = function(task) {
+    task.completed = !task.completed;
+    TasksService.update(task);
   }
 });

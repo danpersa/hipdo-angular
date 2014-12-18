@@ -5,6 +5,7 @@ angular.module('tasksApp').service('TasksService', function() {
       name: 'Preprare for your birthday',
       description: 'Buy presents for christmas',
       dueDate: new Date(2015, 1, 3, 0, 0, 0, 0),
+      completed: true,
       tags: ['monday', 'shopping']
 
     },
@@ -13,6 +14,7 @@ angular.module('tasksApp').service('TasksService', function() {
       name: 'Solve the car insurance papers',
       description: '',
       dueDate: new Date(2014, 12, 23, 0, 0, 0, 0),
+      completed: false,
       tags: ['tuesday', 'shopping', 'car']
 
     },
@@ -21,6 +23,7 @@ angular.module('tasksApp').service('TasksService', function() {
       name: 'Buy presents for Christmas',
       description: 'Buy presents for christmas',
       dueDate: new Date(2014, 12, 22, 0, 0, 0, 0),
+      completed: false,
       tags: ['tuesday', 'shopping']
     }
   ];
