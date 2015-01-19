@@ -4,7 +4,9 @@ angular.module('tasksApp').controller('TasksController',
   $scope.init = function() {
     SelectedTagsService.init();
     var selectedTags = SelectedTagsService.all();
-    $scope.tasks = TasksService.byTags(selectedTags);
+    var showCompletedTasks = FiltersService.showingCompletedTasks();
+    var showPastTasks = FiltersService.showingPastTasks();
+    $scope.tasks = TasksService.filter(showCompletedTasks, showPastTasks, selectedTags);
     $scope.tasksPanelTitle = TasksTitleService.tasksPanelTitle();
     $scope.createTaskPlaceholderTitle = TasksTitleService.createTaskPlaceholderTitle();
     $scope.showCompletedTasksButtonTitle = FiltersTitleService.showCompletedTasksButtonTitle();
@@ -45,8 +47,12 @@ angular.module('tasksApp').controller('TasksController',
     TasksService.update(task);
   }
 
-  $scope.updateDueDate = function(task) {
+  $scope.updateDueDate = function(task, index) {
+    task.dueDate = Date.parse(task.dueDate);
     TasksService.update(task);
+    if (!FiltersService.showingPastTasks() && TasksService.isPastTask(task)) {
+      $scope.tasks.splice(index, 1);
+    }
   }
 
   $scope.updateTaskDescription = function(task, newTaskDescription) {
@@ -55,8 +61,11 @@ angular.module('tasksApp').controller('TasksController',
     TasksService.update(task);
   }
 
-  $scope.toggleTaskCompleted = function(task) {
+  $scope.toggleTaskCompleted = function(task, index) {
     task.completed = !task.completed;
     TasksService.update(task);
+    if (!FiltersService.showingCompletedTasks()) {
+      $scope.tasks.splice(index, 1);
+    }
   }
 });

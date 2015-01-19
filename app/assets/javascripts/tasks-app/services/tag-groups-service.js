@@ -23,6 +23,16 @@ angular.module('tasksApp').service('TagGroupsService', function() {
     return this.tagGroups;
   }
 
+  this.filterByKey = function(removedKey) {
+    var filtered = [];
+    angular.forEach(this.tagGroups, function(tagGroup) {
+      if (tagGroup.key !== removedKey) {
+        this.push(tagGroup);
+      }
+    }, filtered);
+    return filtered;
+  }
+
   this.create = function(tagGroup) {
     console.log('Create tag group: ' + tagGroup);
     tagGroup.key = 'tag-group-' + this.currentId;

@@ -1,6 +1,4 @@
 class TasksController < ApplicationControlelr
-
-
   def index
 
   end

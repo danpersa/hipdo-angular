@@ -3,9 +3,9 @@ angular.module('tasksApp').service('LocationService', function($location, Select
   this.updateUrl = function() {
     var selectedTags = SelectedTagsService.all();
     if (selectedTags.length == 0) {
-      $location.url('/tasks/');
+      $location.url('?');
     } else {
-      $location.url('/tasks/?tags=' + selectedTags);
+      $location.url('?tags=' + selectedTags);
     }
   }
 

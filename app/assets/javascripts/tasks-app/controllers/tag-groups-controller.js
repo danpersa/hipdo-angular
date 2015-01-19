@@ -1,8 +1,13 @@
 angular.module('tasksApp').controller('TagGroupsController',
-  function($scope, LocationService, SelectedTagsService, TagGroupsService, TagGroupPanelsService) {
+  function($scope, $routeParams, LocationService, SelectedTagsService, TagGroupsService, TagGroupPanelsService) {
 
   $scope.init = function() {
-    $scope.tagGroups = TagGroupsService.all();
+    var groupKey = $routeParams.groupKey;
+    if (groupKey !== undefined && groupKey !== null && groupKey !== '') {
+      $scope.tagGroups = TagGroupsService.filterByKey(groupKey);
+    } else {
+      $scope.tagGroups = TagGroupsService.all();
+    }
     $scope.selectedTags = SelectedTagsService.all();
     $scope.tagNames = {};
   }

@@ -17,3 +17,6 @@
 /node_modules
 /lib/assets/bower_components/
 /vendor/assets/bower_components/
+
+# Ignore RubyMine files
+.idea

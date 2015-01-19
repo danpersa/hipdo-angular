@@ -51,7 +51,7 @@
       });
 
       $routeProvider.when('/', {
-          redirectTo: '/home'
+          redirectTo: '/tasks'
       });
 
       $routeProvider.when('/home', {

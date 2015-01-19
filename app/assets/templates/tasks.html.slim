@@ -54,9 +54,9 @@
             a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completed}" {{ task.name || "empty" }}
             .task-buttons.pull-right
               .btn-group(role="group")
-                button.btn(type="button" ng-click="toggleTaskCompleted(task)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
+                button.btn(type="button" ng-click="toggleTaskCompleted(task, $index)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
                   span.glyphicon.glyphicon-ok
-                calendar(model="task.dueDate" on-change="updateDueDate(task)")
+                calendar(model="task.dueDate" on-change="updateDueDate(task, $index)")
                   span.glyphicon.glyphicon-time
                 button.btn.btn-danger.last-button(type="button" ng-click="deleteTask(task, $index)")
                   span.glyphicon.glyphicon-trash
