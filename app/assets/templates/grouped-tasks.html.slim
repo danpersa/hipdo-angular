@@ -32,10 +32,10 @@
         | {{groupName}}
       div.panel.panel-default.dashboard-list(ng-repeat="tag in tags")
         div.panel-heading
-          h4 ~ {{tag}}
+          h4 # {{tag}}
         form#new-task(ng-submit="createTask(tag)")
           .input-group
-            input#taskName.form-control.input-lg(type="text" autofocus="autofocus" placeholder="Name" maxlength="255" ng-model="taskNames[tag]" data-non-blank)
+            input#taskName.form-control.input-lg(type="text" autofocus="autofocus" placeholder="Create task" maxlength="255" ng-model="taskNames[tag]" data-non-blank)
             span.input-group-btn
               button.btn.btn-primary.btn-lg(type="submit") add
         ul.list-group(ng-show="groupedTasks[tag] == 0")
@@ -55,3 +55,5 @@
             .task-date(ng-show="task.dueDate")
               small
                 ' Date: {{task.dueDate | date : 'yyyy-MM-dd' }}
+              small(ng-hide="task.dueDate")
+                ' No due date

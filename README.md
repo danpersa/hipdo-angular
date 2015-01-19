@@ -30,4 +30,7 @@ Please feel free to use a different markup language if you do not plan to run
 
 ### Commands
 
+
 bundle exec rake bower:install
+
+passenger start

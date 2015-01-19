@@ -1,4 +1,4 @@
-angular.module('tasksApp').service('TasksService', function() {
+angular.module('tasksApp').service('TasksService', function(SelectedTagsService) {
   this.tasks = [
     {
       id: 1,
@@ -71,6 +71,7 @@ angular.module('tasksApp').service('TasksService', function() {
 
 
   function taskString(task) {
-    return 'Task id: [' + task.id + '] name: [' + task.name + '] description: [' + task.description + '] dueDate: [' + task.dueDate + ']';
+    return 'Task id: [' + task.id + '] name: [' + task.name + '] description: ['
+    + task.description + '] dueDate: [' + task.dueDate + '] tags: [' + task.tags + ']';
   }
 });

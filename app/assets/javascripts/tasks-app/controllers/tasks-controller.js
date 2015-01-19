@@ -1,18 +1,36 @@
-angular.module('tasksApp').controller('TasksController', function($scope, TasksService, SelectedTagsService, LocationService) {
+angular.module('tasksApp').controller('TasksController',
+  function($scope, TasksService, SelectedTagsService, LocationService,
+    TasksTitleService, FiltersService, FiltersTitleService) {
   $scope.init = function() {
     SelectedTagsService.init();
     var selectedTags = SelectedTagsService.all();
     $scope.tasks = TasksService.byTags(selectedTags);
+    $scope.tasksPanelTitle = TasksTitleService.tasksPanelTitle();
+    $scope.createTaskPlaceholderTitle = TasksTitleService.createTaskPlaceholderTitle();
+    $scope.showCompletedTasksButtonTitle = FiltersTitleService.showCompletedTasksButtonTitle();
+    $scope.showPastTasksButtonTitle = FiltersTitleService.showPastTasksButtonTitle();
   }
 
   $scope.createTask = function() {
     var newTask = TasksService.create({
       name: $scope.taskName,
-      description: $scope.taskDescription
+      description: $scope.taskDescription,
+      tags: SelectedTagsService.all()
     });
 
     $scope.taskName = "";
     $scope.taskDescription = "";
+    this.init();
+  }
+
+  $scope.toggleShowCompletedTasks = function() {
+    FiltersService.toggleShowCompletedTasks();
+    this.init();
+  }
+
+  $scope.toggleShowPastTasks = function() {
+    FiltersService.toggleShowPastTasks();
+    this.init();
   }
 
   $scope.deleteTask = function(task, index) {

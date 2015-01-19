@@ -35,4 +35,8 @@ angular.module('tasksApp').service('SelectedTagsService', function($location, $r
     var index = this.selectedTags.indexOf(tag);
     this.selectedTags.splice(index, 1);
   }
+
+  this.isAnyTagSelected = function() {
+    return this.selectedTags.length != 0;
+  }
 });

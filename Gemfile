@@ -37,7 +37,7 @@ group :development do
   gem 'spring'
   gem 'therubyracer'
   gem 'execjs'
-  gem 'thin'
+  gem 'passenger'
 end
 
 # Use ActiveModel has_secure_password
