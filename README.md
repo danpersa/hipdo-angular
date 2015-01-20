@@ -30,6 +30,7 @@ Please feel free to use a different markup language if you do not plan to run
 ### Technologies
 
 https://github.com/a5hik/ng-sortable
+http://yeoman.io/codelab/local-storage.html
 
 ### Commands
 
