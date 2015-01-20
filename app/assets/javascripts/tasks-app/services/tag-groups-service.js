@@ -33,6 +33,16 @@ angular.module('tasksApp').service('TagGroupsService', function() {
     return filtered;
   }
 
+  this.removeTagFromGroup = function(tag, groupKey) {
+    var tagGroup = this.get(groupKey);
+    for (i = 0; i < tagGroup.tags.length; ++i) {
+      var t = tagGroup.tags[i];
+      if (t === tag) {
+        tagGroup.tags.splice(i, 1);
+      }
+    }
+  }
+
   this.create = function(tagGroup) {
     console.log('Create tag group: ' + tagGroup);
     tagGroup.key = 'tag-group-' + this.currentId;
@@ -44,7 +54,9 @@ angular.module('tasksApp').service('TagGroupsService', function() {
 
   this.addTagToGroup = function(groupKey, tag) {
     var tagGroup = this.get(groupKey);
-    tagGroup.tags.push(tag);
+    if (tagGroup.tags.indexOf(tag) === -1) {
+      tagGroup.tags.push(tag);
+    }
   }
 
   this.get = function(groupKey) {

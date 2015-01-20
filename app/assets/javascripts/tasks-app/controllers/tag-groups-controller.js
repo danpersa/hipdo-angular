@@ -44,4 +44,31 @@ angular.module('tasksApp').controller('TagGroupsController',
   $scope.isTagGroupPanelCollapsed = function(groupKey) {
     return TagGroupPanelsService.isTagGroupPanelCollapsed(groupKey);
   }
+
+  $scope.removeTagFromGroup = function(tag, groupKey) {
+    TagGroupsService.removeTagFromGroup(tag, groupKey)
+    this.init();
+  }
+
+  $scope.dragControlListeners = {
+    accept: function (sourceItemHandleScope, destSortableScope) {
+      // allow moving the tag in the same tag group
+      if (sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id) {
+        return true;
+      }
+
+      var movedTag = sourceItemHandleScope.itemScope.modelValue;
+      var destinationArray = destSortableScope.modelValue;
+      // don't allow if destination has the same tag
+      if (destinationArray.indexOf(movedTag) === -1) {
+        return true;
+      }
+      return false;
+    }, //override to determine drag is allowed or not. default is true.
+    itemMoved: function (event) {//Do what you want
+    },
+    orderChanged: function(event) {//Do what you want
+    }
+   //,   containment: '#board'//optional param.
+  };
 });

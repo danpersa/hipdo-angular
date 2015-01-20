@@ -19,6 +19,7 @@
 //= require angular-route
 //= require angular-animate
 //= require angular-resource
+//= require ng-sortable/dist/ng-sortable
 //= require angular-xeditable/dist/js/xeditable
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets

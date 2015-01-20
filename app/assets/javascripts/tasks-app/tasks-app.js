@@ -40,7 +40,8 @@
     'templates',
     'ngResource',
     'ngRoute',
-    'xeditable'
+    'xeditable',
+    'ui.sortable'
   ]);
 
   tasksApp.config(['$routeProvider', '$locationProvider',
