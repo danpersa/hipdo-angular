@@ -34,7 +34,15 @@ http://yeoman.io/codelab/local-storage.html
 
 ### Commands
 
-
 bundle exec rake bower:install
-
 passenger start
+
+### TODO
+
+ * task sorting by tag group
+ * reordering tasks
+ * reordering tasks in groups (moving one task from one group to another) ??
+ * task edit page
+ * remove tags from tasks
+ * list tags of a task
+ * update the inital values to have priority also
