@@ -45,6 +45,4 @@ passenger start
  * task edit page
  * remove tags from tasks
  * list tags of a task
- * update the inital values to have priority also
- * generate dash separated lower case urls for tag groups at creation
  * edit group name
