@@ -1,6 +1,6 @@
 .ng-cloak(ng-init="init()")
-  .row
-    .col-md-4.col-xs-4(ng-controller="TagGroupsController" ng-init="init()")
+  .row.row-offcanvas.row-offcanvas-left
+    .col-md-4.col-sm-4.col-xs-1.sidebar-offcanvas(id="sidebar" ng-controller="TagGroupsController" role="navigation" ng-init="init()")
       form.flat-form(ng-submit="createTagGroup()")
         .input-group
           input#tagGroupName.form-control.input-lg(type="text" placeholder="Tag Group Name" maxlength="255" ng-model="tagGroupName" data-non-blank)
@@ -33,7 +33,9 @@
                   .col-md-3
                     .glyphicon.glyphicon-trash.pull-right(ng-click="removeTagFromGroup(tag, tagGroup.key)")
 
-    .col-md-8.col-xs-8
+    .col-md-8.col-sm-8.col-xs-10
+      p.visible-xs
+        button(type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas") Toggle nav
       div.panel.panel-default
         div.panel-body
           .btn-group(role="group")
@@ -71,3 +73,5 @@
                 ' Date: {{task.dueDate | date : 'yyyy-MM-dd' }}
               small(ng-hide="task.dueDate")
                 ' No due date
+
+    

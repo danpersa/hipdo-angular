@@ -40,9 +40,10 @@ passenger start
 ### TODO
 
  * task sorting by tag group
- * reordering tasks
- * reordering tasks in groups (moving one task from one group to another) ??
+ * reordering tasks - not really possible as the tasks are filters
+ * reordering tasks in groups (moving one task from one group to another) ?? not really possible
  * task edit page
  * remove tags from tasks
  * list tags of a task
  * edit group name
+ * use collapsable sidebar
