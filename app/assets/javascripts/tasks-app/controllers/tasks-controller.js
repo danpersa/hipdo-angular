@@ -11,6 +11,7 @@ angular.module('tasksApp').controller('TasksController',
     $scope.createTaskPlaceholderTitle = TasksTitleService.createTaskPlaceholderTitle();
     $scope.showCompletedTasksButtonTitle = FiltersTitleService.showCompletedTasksButtonTitle();
     $scope.showPastTasksButtonTitle = FiltersTitleService.showPastTasksButtonTitle();
+    initOffcanvas();
   }
 
   $scope.createTask = function() {

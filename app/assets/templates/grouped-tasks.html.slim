@@ -1,72 +1,76 @@
-.ng-cloak(ng-init="init()")
-  .row
-    .col-md-4.col-xs-4(ng-controller="TagGroupsController" ng-init="init()")
-      form.flat-form(ng-submit="createTagGroup()")
+.row.row-offcanvas.row-offcanvas-left(ng-init="init()")
+
+  .col-md-4.col-sm-4.col-xs-5.sidebar-offcanvas(ng-controller="TagGroupsController" role="navigation" ng-init="init()")
+    form.flat-form(ng-submit="createTagGroup()")
+      .input-group
+        input#tagGroupName.form-control.input-lg(type="text" placeholder="Tag Group Name" maxlength="255" ng-model="tagGroupName" data-non-blank)
+        span.input-group-btn
+          button.btn.btn-warning.btn-lg(type="submit") add
+    br
+
+    div.panel.panel-default.tag-list(ng-repeat="tagGroup in tagGroups track by tagGroup.key")
+      div.panel-heading
+        h4
+          a(ng-click="navigateToGroupedTasks(tagGroup.key)") {{tagGroup.name}}
+          a(ng-click="toggleTagGroupPanel(tagGroup.key)")
+            span.glyphicon.glyphicon-resize-small.pull-right(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
+            span.glyphicon.glyphicon-resize-full.pull-right(ng-show="isTagGroupPanelCollapsed(tagGroup.key)")
+      form.flat-form.new-tag(ng-submit="addTagToGroup(tagGroup.key)" ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
         .input-group
-          input#tagGroupName.form-control.input-lg(type="text" placeholder="Tag Group Name" maxlength="255" ng-model="tagGroupName" data-non-blank)
+          input.form-control.input-lg(type="text" placeholder="Tag Name" maxlength="255" ng-model="tagNames[tagGroup.key]" data-non-blank)
           span.input-group-btn
-            button.btn.btn-warning.btn-lg(type="submit") add
-      br
+            button.btn.btn-success.btn-lg(type="submit") add
+      div.panel-body(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
+        ul.nav.nav-pills.nav-stacked(ng-show="tagGroup.tags == 0")
+          li
+          ' You haven't created any tags yet.
+        ul.nav.nav-pills.nav-stacked(data-as-sortable="dragControlListeners" data-ng-model="tagGroup.tags")
+          li(data-ng-repeat="tag in tagGroup.tags" ng-class="{active: isTagActive(tag)}" data-as-sortable-item)
+            a.list-group-item(href="#" ng-click="toggleTag(tag)")
+              .row
+                .col-md-9.col-xm-9.col-xs-9.tag-item
+                  .glyphicon.glyphicon-move.tag-move(data-as-sortable-item-handle)
+                  ' {{ tag || "empty" }}
+                .col-md-3.col-sm-3.col-xs-3
+                  .glyphicon.glyphicon-trash.pull-right(ng-click="removeTagFromGroup(tag, tagGroup.key)")
 
-      div.panel.panel-default.tag-list(ng-repeat="tagGroup in tagGroups track by tagGroup.key")
-        div.panel-heading
-          h4
-            a(ng-click="navigateToGroupedTasks(tagGroup.key)") {{tagGroup.name}}
-            a(ng-click="toggleTagGroupPanel(tagGroup.key)")
-              span.glyphicon.glyphicon-resize-small.pull-right(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
-              span.glyphicon.glyphicon-resize-full.pull-right(ng-show="isTagGroupPanelCollapsed(tagGroup.key)")
-        form.flat-form.new-tag(ng-submit="addTagToGroup(tagGroup.key)" ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
-          .input-group
-            input.form-control.input-lg(type="text" placeholder="Tag Name" maxlength="255" ng-model="tagNames[tagGroup.key]" data-non-blank)
-            span.input-group-btn
-              button.btn.btn-success.btn-lg(type="submit") add
-        div.panel-body(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
-          ul.nav.nav-pills.nav-stacked(ng-show="tagGroup.tags == 0")
-            li
-            ' You haven't created any tags yet.
-          ul.nav.nav-pills.nav-stacked(data-as-sortable="dragControlListeners" data-ng-model="tagGroup.tags")
-            li(data-ng-repeat="tag in tagGroup.tags" ng-class="{active: isTagActive(tag)}" data-as-sortable-item)
-              a.list-group-item(href="#" ng-click="toggleTag(tag)" data-as-sortable-item-handle)
-                .row
-                  .col-md-9.tag-item
-                    ' {{ tag || "empty" }}
-                  .col-md-3
-                    .glyphicon.glyphicon-trash.pull-right(ng-click="removeTagFromGroup(tag, tagGroup.key)")
-    .col-md-8.col-xs-8
-      div.panel.panel-default
-        div.panel-body
-          .btn-group(role="group")
-            button.btn.btn-default(type="button" ng-click="toggleShowCompletedTasks()")
-              ' {{showCompletedTasksButtonTitle}}
-            button.btn.btn-default(type="button" ng-click="toggleShowPastTasks()")
-              ' {{showPastTasksButtonTitle}}
+  .col-md-8.col-sm-8.col-xs-7.main-offcanvas
+    p.visible-xs
+      button(type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas") Toggle nav
+    div.panel.panel-default
+      div.panel-body
+        .btn-group(role="group")
+          button.btn.btn-default(type="button" ng-click="toggleShowCompletedTasks()")
+            ' {{showCompletedTasksButtonTitle}}
+          button.btn.btn-default(type="button" ng-click="toggleShowPastTasks()")
+            ' {{showPastTasksButtonTitle}}
 
-      h3
-        | {{groupName}}
-      div.panel.panel-default.dashboard-list(ng-repeat="tag in tags")
-        div.panel-heading
-          h4 # {{tag}}
-        form#new-task(ng-submit="createTask(tag)")
-          .input-group
-            input#taskName.form-control.input-lg(type="text" autofocus="autofocus" placeholder="{{createTaskPlaceholderTitle}}" maxlength="255" ng-model="taskNames[tag]" data-non-blank)
-            span.input-group-btn
-              button.btn.btn-primary.btn-lg(type="submit") add
-        ul.list-group(ng-show="groupedTasks[tag] == 0")
-          li.list-group-item
-            ' You haven't created any tasks with this tag yet.
-        ul.list-group
-          li.list-group-item(ng-repeat="task in groupedTasks[tag]")
-            a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completed}" {{ task.name || "empty" }}
-            .task-buttons.pull-right
-              .btn-group(role="group")
-                button.btn(type="button" ng-click="toggleTaskCompleted(task, $index)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
-                  span.glyphicon.glyphicon-ok
-                calendar(model="task.dueDate" on-change="updateDueDate(task, $index)")
-                  span.glyphicon.glyphicon-time
-                button.btn.btn-danger.last-button(type="button" ng-click="deleteTask(task, $index)")
-                  span.glyphicon.glyphicon-trash
-            .task-date
-              small(ng-show="task.dueDate")
-                ' Date: {{task.dueDate | date : 'yyyy-MM-dd' }}
-              small(ng-hide="task.dueDate")
-                ' No due date
+    h3
+      | {{groupName}}
+    div.panel.panel-default.dashboard-list(ng-repeat="tag in tags")
+      div.panel-heading
+        h4 # {{tag}}
+      form#new-task(ng-submit="createTask(tag)")
+        .input-group
+          input#taskName.form-control.input-lg(type="text" autofocus="autofocus" placeholder="{{createTaskPlaceholderTitle}}" maxlength="255" ng-model="taskNames[tag]" data-non-blank)
+          span.input-group-btn
+            button.btn.btn-primary.btn-lg(type="submit") add
+      ul.list-group(ng-show="groupedTasks[tag] == 0")
+        li.list-group-item
+          ' You haven't created any tasks with this tag yet.
+      ul.list-group
+        li.list-group-item(ng-repeat="task in groupedTasks[tag]")
+          a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completed}" {{ task.name || "empty" }}
+          .task-buttons.pull-right
+            .btn-group(role="group")
+              button.btn(type="button" ng-click="toggleTaskCompleted(task, $index)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
+                span.glyphicon.glyphicon-ok
+              calendar(model="task.dueDate" on-change="updateDueDate(task, $index)")
+                span.glyphicon.glyphicon-time
+              button.btn.btn-danger.last-button(type="button" ng-click="deleteTask(task, $index)")
+                span.glyphicon.glyphicon-trash
+          .task-date
+            small(ng-show="task.dueDate")
+              ' Date: {{task.dueDate | date : 'yyyy-MM-dd' }}
+            small(ng-hide="task.dueDate")
+              ' No due date

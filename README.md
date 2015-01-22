@@ -46,4 +46,4 @@ passenger start
  * remove tags from tasks
  * list tags of a task
  * edit group name
- * use collapsable sidebar
+

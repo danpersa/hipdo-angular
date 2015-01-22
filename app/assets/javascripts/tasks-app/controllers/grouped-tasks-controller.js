@@ -17,6 +17,7 @@ angular.module('tasksApp').controller('GroupedTasksController',
     $scope.showCompletedTasksButtonTitle = FiltersTitleService.showCompletedTasksButtonTitle();
     $scope.showPastTasksButtonTitle = FiltersTitleService.showPastTasksButtonTitle();
     $scope.createTaskPlaceholderTitle = TasksTitleService.createTaskPlaceholderTitle();
+    initOffcanvas();
   }
 
   $scope.createTask = function(tag) {
