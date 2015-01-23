@@ -1,5 +1,6 @@
 angular.module('tasksApp').controller('TagGroupsController',
-  function($scope, $routeParams, LocationService, SelectedTagsService, TagGroupsService, TagGroupPanelsService) {
+  function($scope, $routeParams, LocationService, SelectedTagsService,
+    TagGroupsService, TagGroupPanelsService, TasksSortingService) {
 
   $scope.init = function() {
     var groupKey = $routeParams.groupKey;
@@ -16,6 +17,8 @@ angular.module('tasksApp').controller('TagGroupsController',
     SelectedTagsService.toggleTag(tag);
     LocationService.updateUrl();
   }
+
+
 
   $scope.isTagActive = function(tag) {
     return SelectedTagsService.isTagSelected(tag);
@@ -48,6 +51,31 @@ angular.module('tasksApp').controller('TagGroupsController',
   $scope.removeTagFromGroup = function(tag, groupKey) {
     TagGroupsService.removeTagFromGroup(tag, groupKey)
     this.init();
+  }
+
+  $scope.sortByTagGroup = function(groupKey) {
+    var dir = TasksSortingService.getDirection();
+    if (isGroupTagSortingActive(groupKey) && dir === ASC) {
+      TasksSortingService.setSorting(groupKey, DESC);
+    } else {
+      TasksSortingService.setSorting(groupKey, ASC);
+    }
+    LocationService.updateUrl();
+  }
+
+  $scope.isGroupTagSortingActive = function(groupKey) {
+    return isGroupTagSortingActive(groupKey);
+  }
+
+  function isGroupTagSortingActive(groupKey) {
+    var sortBy = TasksSortingService.getSortBy();
+    return sortBy === groupKey;
+  }
+
+  $scope.ascendingSortingEnabled = function(groupKey) {
+   var sortBy = TasksSortingService.getSortBy();
+   var dir = TasksSortingService.getDirection();
+   return (sortBy !== groupKey) || ((sortBy === groupKey) && dir !== 'desc');
   }
 
   $scope.dragControlListeners = {

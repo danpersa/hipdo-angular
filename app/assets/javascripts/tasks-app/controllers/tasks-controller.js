@@ -1,16 +1,21 @@
 angular.module('tasksApp').controller('TasksController',
   function($scope, TasksService, SelectedTagsService, LocationService,
-    TasksTitleService, FiltersService, FiltersTitleService) {
+    TasksTitleService, FiltersService, FiltersTitleService, TasksSortingService,
+    TagGroupsService) {
   $scope.init = function() {
     SelectedTagsService.init();
+    TasksSortingService.init();
     var selectedTags = SelectedTagsService.all();
     var showCompletedTasks = FiltersService.showingCompletedTasks();
     var showPastTasks = FiltersService.showingPastTasks();
-    $scope.tasks = TasksService.filter(showCompletedTasks, showPastTasks, selectedTags);
+    var tsks = TasksService.filter(showCompletedTasks, showPastTasks, selectedTags);
+    $scope.tasks = TasksSortingService.sort(tsks);
     $scope.tasksPanelTitle = TasksTitleService.tasksPanelTitle();
     $scope.createTaskPlaceholderTitle = TasksTitleService.createTaskPlaceholderTitle();
     $scope.showCompletedTasksButtonTitle = FiltersTitleService.showCompletedTasksButtonTitle();
     $scope.showPastTasksButtonTitle = FiltersTitleService.showPastTasksButtonTitle();
+    $scope.sortedBy = TasksSortingService.getSortBy();
+    $scope.sortingDirection = TasksSortingService.getDirection();
     initOffcanvas();
   }
 

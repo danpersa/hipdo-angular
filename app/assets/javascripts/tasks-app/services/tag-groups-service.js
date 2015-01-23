@@ -71,4 +71,16 @@ angular.module('tasksApp').service('TagGroupsService', function() {
     }
     return null;
   }
+
+  this.keys = function() {
+    var list = Immutable.List();
+    var tagGroups = this.tagGroups;
+    var result = list.withMutations(function(list) {
+      angular.forEach(tagGroups, function(tagGroup) {
+        console.log('push key: ' + tagGroup.key);
+        this.push(tagGroup.key);
+      }, list);
+    });
+    return result;
+  }
 });

@@ -10,7 +10,8 @@
       "angular-route": "^1.3.0",
       "angular-resource": "^1.3.0",
       "angular-xeditable": "latest",
-      "ng-sortable": "latest"
+      "ng-sortable": "latest",
+      "immutable": "latest"
       //,
       //"angular-ui-bootstrap-bower": "latest"
     }

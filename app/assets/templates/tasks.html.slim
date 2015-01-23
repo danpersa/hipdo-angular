@@ -11,8 +11,10 @@
     div.panel.panel-default.tag-list(ng-repeat="tagGroup in tagGroups track by tagGroup.key")
       div.panel-heading
         h4
-          a.sort-by-tag-group
-            span.glyphicon.glyphicon-sort-by-alphabet
+          a.sort-by-tag-group(ng-click="sortByTagGroup(tagGroup.key)" ng-show="ascendingSortingEnabled(tagGroup.key)")
+            span.glyphicon.glyphicon-sort-by-attributes(ng-class="{active: isGroupTagSortingActive(tagGroup.key)}")
+          a.sort-by-tag-group(ng-click="sortByTagGroup(tagGroup.key)" ng-hide="ascendingSortingEnabled(tagGroup.key)")
+            span.glyphicon.glyphicon-sort-by-attributes-alt(ng-class="{active: isGroupTagSortingActive(tagGroup.key)}")
           a(ng-click="navigateToGroupedTasks(tagGroup.key)") {{tagGroup.name}}
           a(ng-click="toggleTagGroupPanel(tagGroup.key)")
             span.glyphicon.glyphicon-resize-small.pull-right(ng-hide="isTagGroupPanelCollapsed(tagGroup.key)")
@@ -49,8 +51,15 @@
 
     div.panel.panel-default.dashboard-list
       div.panel-heading
-        h4
-          ' {{tasksPanelTitle}}
+        .row
+          .col-md-8.col-sm-8.col-xs-12
+            h4
+              ' {{tasksPanelTitle}}
+          .col-md-4.col-sm-4.col-xs-12
+            h6(ng-show="sortedBy && sortedBy !== 'default'")
+              ' Sorted by: {{sortedBy}}
+            h6(ng-show="sortingDirection === 'desc'")
+              ' Descending order
 
       form#new-task(ng-submit="createTask()")
         .input-group

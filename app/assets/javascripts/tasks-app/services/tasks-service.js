@@ -29,15 +29,39 @@ angular.module('tasksApp').service('TasksService',
       },
       {
         id: 4,
-        name: 'Go swimming',
+        name: 'Go swimming tuesday',
         description: 'Go swimming',
         dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
         completed: false,
         tags: ['tuesday', 'shopping', 'angular']
+      },
+      {
+        id: 5,
+        name: 'Go swimming thursday',
+        description: 'Go swimming',
+        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
+        completed: false,
+        tags: ['thursday', 'shopping', 'angular']
+      },
+      {
+        id: 6,
+        name: 'Go swimming sunday',
+        description: 'Go swimming',
+        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
+        completed: false,
+        tags: ['sunday', 'shopping', 'angular']
+      },
+      {
+        id: 7,
+        name: 'Go swimming monday',
+        description: 'Go swimming',
+        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
+        completed: false,
+        tags: ['monday', 'shopping', 'angular']
       }
     ];
 
-    this.currentId = 5;
+    this.currentId = 15;
 
     this.all = function() {
       return this.tasks;
