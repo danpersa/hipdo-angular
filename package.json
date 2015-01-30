@@ -2,11 +2,11 @@
   "name": "hipdo",
   "version": "0.8.0",
   "dependencies": {
-    "bower": "~1.2"
+    "bower": "~1.3"
   },
   "engine": {
     "node": "0.10.x",
-    "npm": "1.3.x"
+    "npm": "2.x"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
