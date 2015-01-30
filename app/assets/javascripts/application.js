@@ -14,7 +14,6 @@
 //----=----- require jquery_ujs
 //= require jquery/dist/jquery
 //= require jquery-ui/ui/datepicker
-//---=---= require turbolinks
 //= require angular
 //= require angular-route
 //= require angular-animate

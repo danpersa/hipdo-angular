@@ -13,7 +13,7 @@ Things you may want to cover:
 
 * Database creation
 
-* Database initialization
+* Database initialisation
 
 * How to run the test suite
 
@@ -37,6 +37,12 @@ http://yeoman.io/codelab/local-storage.html
 bundle exec rake bower:install
 passenger start
 
+Compile assets for production
+RAILS_ENV=production bin/rake assets:precompile
+
+Start thin server in production mode
+rails s -e production
+
 ### TODO
 
  * task sorting by tag group
@@ -46,4 +52,3 @@ passenger start
  * remove tags from tasks
  * list tags of a task
  * edit group name
-
