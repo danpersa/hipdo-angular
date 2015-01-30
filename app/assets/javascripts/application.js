@@ -14,10 +14,10 @@
 //----=----- require jquery_ujs
 //= require jquery/dist/jquery
 //= require jquery-ui/ui/datepicker
-//= require angular
-//= require angular-route
-//= require angular-animate
-//= require angular-resource
+//= require angular/angular
+//= require angular-route/angular-route
+//= require angular-animate/angular-animate
+//= require angular-resource/angular-resource
 //= require ng-sortable/dist/ng-sortable
 //= require angular-xeditable/dist/js/xeditable
 //= require immutable/dist/immutable
