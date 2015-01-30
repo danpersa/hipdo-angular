@@ -43,6 +43,12 @@ RAILS_ENV=production bin/rake assets:precompile
 Start thin server in production mode
 rails s -e production
 
+Add heroku remote
+heroku git:remote -a hipdo
+
+Use custom buildpack, to include node
+heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+
 ### TODO
 
  * task sorting by tag group
