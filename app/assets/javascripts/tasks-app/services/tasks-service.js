@@ -1,6 +1,9 @@
 angular.module('tasksApp').service('TasksService',
-  function(SelectedTagsService) {
-    this.tasks = [
+  function($rootScope, SelectedTagsService, localStorageService) {
+
+    var tasksInStore = localStorageService.get('tasks');
+
+    this.tasks = tasksInStore || [
       {
         id: 1,
         name: 'Preprare for your birthday',
@@ -97,6 +100,7 @@ angular.module('tasksApp').service('TasksService',
       task.id = this.currentId;
       this.currentId = this.currentId + 1;
       this.tasks.push(task);
+      this.saveToLocalStorage();
       return task;
     }
 
@@ -106,12 +110,14 @@ angular.module('tasksApp').service('TasksService',
         var t = this.tasks[i];
         if (task.id === t.id) {
           this.tasks.splice(i, 1);
+          this.saveToLocalStorage();
           return;
         }
       }
     }
 
     this.update = function(task) {
+      this.saveToLocalStorage();
       console.log('Update ' + taskString(task));
     }
 
@@ -121,5 +127,9 @@ angular.module('tasksApp').service('TasksService',
 
     this.isPastTask = function(task) {
       return isPastTask(task);
+    }
+
+    this.saveToLocalStorage = function() {
+      localStorageService.set('tasks', this.tasks);
     }
   });

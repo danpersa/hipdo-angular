@@ -34,20 +34,30 @@ http://yeoman.io/codelab/local-storage.html
 
 ### Commands
 
-bundle exec rake bower:install
-passenger start
+    bundle exec rake bower:install
 
-Compile assets for production
-RAILS_ENV=production bin/rake assets:precompile
+#### Compile assets for production
 
-Start thin server in production mode
+    (https://devcenter.heroku.com/articles/rails-asset-pipeline)
+    RAILS_ENV=production bundle exec rake assets:precompile
+
+#### Start rails in production mode
+
 rails s -e production
 
+#### Settings for Heroku
+
 Add heroku remote
-heroku git:remote -a hipdo
+    heroku git:remote -a hipdo
 
 Use custom buildpack, to include node
-heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+    heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+
+### Using the Passenger Server
+
+    passenger start
+
+    passenger start -a 0.0.0.0 -p 3000 -d -e production
 
 ### TODO
 

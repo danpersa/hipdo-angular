@@ -21,6 +21,7 @@
 //= require ng-sortable/dist/ng-sortable
 //= require angular-xeditable/dist/js/xeditable
 //= require immutable/dist/immutable
+//= require angular-local-storage/dist/angular-local-storage
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 //= require ./tasks-app/tasks-app

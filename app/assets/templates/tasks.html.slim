@@ -43,11 +43,24 @@
       button(type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas") Toggle nav
     div.panel.panel-default
       div.panel-body
-        .btn-group(role="group" aria-label="..." )
+        .btn-group.btn-group-sm(role="group" aria-label="..." )
           button.btn.btn-default(type="button" ng-click="toggleShowCompletedTasks()")
             ' {{showCompletedTasksButtonTitle}}
           button.btn.btn-default(type="button" ng-click="toggleShowPastTasks()")
             ' {{showPastTasksButtonTitle}}
+          .btn-group.btn-group-sm(role="group")
+            button.btn.btn-default.dropdown-toggle(data-toggle="dropdown" aria-expanded="false" type="button")
+              ' Sort
+              span.caret
+            .ul.dropdown-menu(role="menu")
+              li
+                a(href="#" ng-click="sortBy('default', 'asc')") Default sorting
+              li
+                a(href="#" ng-click="sortBy('default', 'desc')") Default sorting descending
+              li
+                a(href="#" ng-click="sortBy('dueDate', 'asc')") Sort by due date
+              li
+                a(href="#" ng-click="sortBy('dueDate', 'desc')") Sort by due date descending
 
     div.panel.panel-default.dashboard-list
       div.panel-heading

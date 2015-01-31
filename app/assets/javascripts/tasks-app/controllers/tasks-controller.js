@@ -74,4 +74,9 @@ angular.module('tasksApp').controller('TasksController',
       $scope.tasks.splice(index, 1);
     }
   }
+
+  $scope.sortBy = function(sortBy, direction) {
+    TasksSortingService.setSorting(sortBy, direction);
+    LocationService.updateUrl();
+  }
 });

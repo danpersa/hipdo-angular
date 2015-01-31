@@ -41,7 +41,8 @@
     'ngResource',
     'ngRoute',
     'xeditable',
-    'ui.sortable'
+    'ui.sortable',
+    'LocalStorageModule'
   ]);
 
   tasksApp.config(['$routeProvider', '$locationProvider',
@@ -71,6 +72,11 @@
       })
     }
   ]);
+
+  tasksApp.config(['localStorageServiceProvider', function(localStorageServiceProvider){
+    localStorageServiceProvider.setPrefix('ls');
+  }])
+
 
   tasksApp.controller('HomeController', function($scope) {
     $scope.header = 'The best tasks app';

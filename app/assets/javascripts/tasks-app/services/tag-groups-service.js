@@ -1,5 +1,8 @@
-angular.module('tasksApp').service('TagGroupsService', function() {
-  this.tagGroups = [
+angular.module('tasksApp').service('TagGroupsService', function(localStorageService) {
+
+  var tagGroupsFromStorage = localStorageService.get('tagGroups');
+
+  this.tagGroups = tagGroupsFromStorage || [
     {
       name: 'Week Days',
       key: 'week-days',
@@ -44,6 +47,7 @@ angular.module('tasksApp').service('TagGroupsService', function() {
         tagGroup.tags.splice(i, 1);
       }
     }
+    this.saveToLocalStorage();
   }
 
   this.create = function(tagGroup) {
@@ -51,6 +55,7 @@ angular.module('tasksApp').service('TagGroupsService', function() {
     tagGroup.key = toUrlKey(tagGroup.name);
     tagGroup.tags = [];
     this.tagGroups.push(tagGroup);
+    this.saveToLocalStorage();
     return tagGroup;
   }
 
@@ -60,6 +65,7 @@ angular.module('tasksApp').service('TagGroupsService', function() {
     if (tagGroup.tags.indexOf(tagKey) === -1) {
       tagGroup.tags.push(tagKey);
     }
+    this.saveToLocalStorage();
   }
 
   this.get = function(groupKey) {
@@ -82,5 +88,9 @@ angular.module('tasksApp').service('TagGroupsService', function() {
       }, list);
     });
     return result;
+  }
+
+  this.saveToLocalStorage = function() {
+    localStorageService.set('tagGroups', this.tagGroups);
   }
 });
