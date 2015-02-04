@@ -20,6 +20,10 @@ angular.module('tasksApp').controller('TasksController',
   }
 
   $scope.createTask = function() {
+    if ($scope.taskName === undefined || $scope.taskName === "") {
+      return;
+    }
+
     var newTask = TasksService.create({
       name: $scope.taskName,
       description: $scope.taskDescription,

@@ -23,7 +23,7 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = false
-  config.assets.prefix = "/dev-assets"
+  config.assets.prefix = "/assets"
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
