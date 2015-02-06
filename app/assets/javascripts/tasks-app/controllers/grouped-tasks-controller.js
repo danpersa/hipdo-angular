@@ -52,6 +52,15 @@ angular.module('tasksApp').controller('GroupedTasksController',
     TasksService.update(task);
   }
 
+  $scope.removeTagFromTask = function(task, index, tag, groupTag) {
+    TasksService.removeTagFromTask(task, tag);
+    if (tag === groupTag) {
+      $scope.groupedTasks[tag].splice($scope.groupTasks[tag].indexOf(task), 1);
+    } else {
+      task.tags.splice(index, 1);
+    }
+  }
+
   $scope.toggleTaskCompleted = function(task, index) {
     task.completed = !task.completed;
     TasksService.update(task);

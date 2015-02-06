@@ -74,3 +74,9 @@
               ' Date: {{task.dueDate | date : 'yyyy-MM-dd' }}
             small(ng-hide="task.dueDate")
               ' No due date
+          .task-tags
+            span.label.label-success.tag-label(ng-repeat="currentTag in task.tags")
+              span
+                ' {{tag}}
+              a(href='#' ng-click="removeTagFromTask(task, $index, currentTag, tag)")
+                span.remove-tag.glyphicon.glyphicon-remove
