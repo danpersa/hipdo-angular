@@ -116,6 +116,13 @@ angular.module('tasksApp').service('TasksService',
       }
     }
 
+    this.removeTagFromTask = function(task, tag) {
+      console.log('Remove tag ' + tag + ' from ' + taskString(task));
+      var index = task.tags.indexOf(tag);
+      task.tags.splice(index, 1);
+      this.saveToLocalStorage();
+    }
+
     this.update = function(task) {
       this.saveToLocalStorage();
       console.log('Update ' + taskString(task));

@@ -65,6 +65,11 @@ angular.module('tasksApp').controller('TasksController',
     }
   }
 
+  $scope.removeTagFromTask = function(task, index, tag) {
+    TasksService.removeTagFromTask(task, tag);
+    task.tags.splice(index, 1);
+  }
+
   $scope.updateTaskDescription = function(task, newTaskDescription) {
     console.log('Update Task Description: [' + newTaskDescription + '] old task name: ' + task.description);
     task.description = newTaskDescription;
