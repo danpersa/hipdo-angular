@@ -18,8 +18,6 @@ angular.module('tasksApp').controller('TagGroupsController',
     LocationService.updateUrl();
   }
 
-
-
   $scope.isTagActive = function(tag) {
     return SelectedTagsService.isTagSelected(tag);
   }
@@ -93,9 +91,11 @@ angular.module('tasksApp').controller('TagGroupsController',
       }
       return false;
     }, //override to determine drag is allowed or not. default is true.
-    itemMoved: function (event) {//Do what you want
+    itemMoved: function (event) {
+      console.log("Event: " + event);
     },
-    orderChanged: function(event) {//Do what you want
+    orderChanged: function(event) {
+      console.log("Event: " + event);
     }
    //,   containment: '#board'//optional param.
   };
