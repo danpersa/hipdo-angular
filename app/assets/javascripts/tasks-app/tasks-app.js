@@ -42,7 +42,8 @@
     'ngRoute',
     'xeditable',
     'ui.sortable',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'bootstrap-tagsinput'
   ]);
 
   tasksApp.config(['$routeProvider', '$locationProvider',

@@ -23,6 +23,9 @@
 //= require immutable/dist/immutable
 //= require angular-local-storage/dist/angular-local-storage
 //= require angular-rails-templates
+//= require typeahead.js/dist/typeahead.bundle.js
+//= require bootstrap-tagsinput/dist/bootstrap-tagsinput
+//= require bootstrap-tagsinput/dist/bootstrap-tagsinput-angular
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 //= require ./tasks-app/tasks-app
 //= require_tree ./tasks-app/controllers

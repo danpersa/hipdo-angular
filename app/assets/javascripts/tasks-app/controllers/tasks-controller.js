@@ -1,7 +1,7 @@
 angular.module('tasksApp').controller('TasksController',
   function($scope, TasksService, SelectedTagsService, LocationService,
     TasksTitleService, FiltersService, FiltersTitleService, TasksSortingService,
-    TagGroupsService) {
+    TagGroupsService, TagsService) {
   $scope.init = function() {
     SelectedTagsService.init();
     TasksSortingService.init();
@@ -18,6 +18,12 @@ angular.module('tasksApp').controller('TasksController',
     $scope.sortingDirection = TasksSortingService.getDirection();
     initOffcanvas();
   }
+
+  $scope.$watch('tasks.tags', function (newVal) {
+    console.log('Tasks tags changed!');
+    var v = $(".bootstrap-tagsinput").val();
+    console.log(v);
+  }, true);
 
   $scope.createTask = function() {
     if ($scope.taskName === undefined || $scope.taskName === "") {
@@ -87,5 +93,13 @@ angular.module('tasksApp').controller('TasksController',
   $scope.sortBy = function(sortBy, direction) {
     TasksSortingService.setSorting(sortBy, direction);
     LocationService.updateUrl();
+  }
+
+  $scope.getTagClass = function() {
+      return 'label label-success';
+  }
+
+  $scope.getAllTags = function(query) {
+      return TagsService.all();
   }
 });

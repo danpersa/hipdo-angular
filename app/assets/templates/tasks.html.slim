@@ -93,11 +93,7 @@
                 small(ng-hide="task.dueDate")
                   ' No due date
               .task-tags
-                span.label.label-success.tag-label(ng-repeat="tag in task.tags")
-                  span
-                    ' {{tag}}
-                  a(href='#' ng-click="removeTagFromTask(task, $index, tag)")
-                    span.remove-tag.glyphicon.glyphicon-remove
+                bootstrap-tagsinput ng-model="task.tags" typeahead-source="getAllTags" tagclass="getTagClass" id="tagsinput-{{task.id}}"
             .col-md-3.col-sm-4.col-xs-12
               .task-buttons.pull-right
                 .btn-group(role="group")

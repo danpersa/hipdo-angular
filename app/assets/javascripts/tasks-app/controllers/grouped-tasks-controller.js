@@ -73,4 +73,8 @@ angular.module('tasksApp').controller('GroupedTasksController',
     FiltersService.toggleShowPastTasks();
     this.init();
   }
+
+  $scope.getTagClass = function() {
+      return 'label label-success';
+  }
 });

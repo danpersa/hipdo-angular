@@ -14,7 +14,9 @@
       "ng-sortable": "latest",
       "immutable": "latest",
       "immutable": "latest",
-      "angular-local-storage": "latest"
+      "angular-local-storage": "latest",
+      "bootstrap-tagsinput": "latest",
+      "typeahead.js": "latest"
     }
   }
 }
