@@ -1,0 +1,30 @@
+ul.list-group(ng-show="tasks == 0")
+  li.list-group-item
+    ' You haven't created any tasks yet.
+ul.list-group
+  li.list-group-item.task-item(ng-repeat="task in tasks")
+    .row
+      .col-md-9.col-sm-8.col-xs-12
+        .row
+          .col-md-12
+            a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completed}" {{ task.name || "empty" }}
+            small.task-date(ng-show="task.dueDate")
+              ' Due date: {{task.dueDate | date : 'yyyy-MM-dd' }}
+            small.task-date(ng-hide="task.dueDate")
+              ' No due date
+        .row
+          .col-ma-12
+            .bootstrap-tagsinput.tagsinput
+              span.tag.label.label-info(ng-repeat="tag in task.tags")
+                | {{tag}}
+                span(data-role="remove" ng-click="removeTagFromTask(task, tag)")
+              input(placeholder="" type="text" style="width: 3em !important;" ng-keyup="$event.keyCode == 13 && addTagToTask(task, $event)")
+      .col-md-3.col-sm-4.col-xs-12
+        .task-buttons.pull-right
+          .btn-group(role="group")
+            button.btn(type="button" ng-click="toggleTaskCompleted(task, $index)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
+              span.glyphicon.glyphicon-ok
+            calendar(model="task.dueDate" on-change="updateDueDate(task, $index)")
+              span.glyphicon.glyphicon-time
+            button.btn.btn-danger.last-button(type="button" ng-click="deleteTask(task, $index)")
+              span.glyphicon.glyphicon-trash

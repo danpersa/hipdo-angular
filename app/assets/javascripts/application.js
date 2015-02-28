@@ -27,5 +27,6 @@
 //= require ./tasks-app/tasks-app
 //= require_tree ./tasks-app/controllers
 //= require_tree ./tasks-app/services
+//= require_tree ./tasks-app/directives
 //= require_tree .
 //= require_tree ../templates

@@ -45,45 +45,6 @@ angular.module('tasksApp').controller('TasksController',
     this.init();
   }
 
-  $scope.deleteTask = function(task, index) {
-    console.log("Delete task index: " + index);
-    TasksService.delete(task);
-    $scope.tasks.splice(index, 1);
-  }
-
-  $scope.updateTaskName = function(task, newTaskName) {
-    console.log('Update Task Name: [' + newTaskName + '] old task name: ' + task.name);
-    task.name = newTaskName;
-    TasksService.update(task);
-  }
-
-  $scope.updateDueDate = function(task, index) {
-    task.dueDate = Date.parse(task.dueDate);
-    TasksService.update(task);
-    if (!FiltersService.showingPastTasks() && TasksService.isPastTask(task)) {
-      $scope.tasks.splice(index, 1);
-    }
-  }
-
-  $scope.removeTagFromTask = function(task, index, tag) {
-    TasksService.removeTagFromTask(task, tag);
-    task.tags.splice(index, 1);
-  }
-
-  $scope.updateTaskDescription = function(task, newTaskDescription) {
-    console.log('Update Task Description: [' + newTaskDescription + '] old task name: ' + task.description);
-    task.description = newTaskDescription;
-    TasksService.update(task);
-  }
-
-  $scope.toggleTaskCompleted = function(task, index) {
-    task.completed = !task.completed;
-    TasksService.update(task);
-    if (!FiltersService.showingCompletedTasks()) {
-      $scope.tasks.splice(index, 1);
-    }
-  }
-
   $scope.sortBy = function(sortBy, direction) {
     TasksSortingService.setSorting(sortBy, direction);
     LocationService.updateUrl();
