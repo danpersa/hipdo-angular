@@ -59,6 +59,17 @@ Use custom buildpack, to include node
 
     passenger start -a 0.0.0.0 -p 3000 -d -e production
 
+### Docker
+
+    docker run dpersa/hipdo:v1
+
+    docker exec -t -i YOUR-CONTAINER-ID bash -l
+
+    passenger-status
+    passenger-memory-stats
+
+    boot2docker ip
+
 ### TODO
 
  * task sorting by tag group
@@ -68,3 +79,5 @@ Use custom buildpack, to include node
  * remove tags from tasks
  * list tags of a task
  * edit group name
+
+
