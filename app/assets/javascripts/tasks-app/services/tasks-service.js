@@ -51,7 +51,8 @@ angular.module('tasksApp').service('TasksService',
         name: 'Go swimming sunday',
         description: 'Go swimming',
         dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
-        completed: false,
+        completed: true,
+        completedDate: new Date(2015, 4, 22, 0, 0, 0, 0),
         tags: ['sunday', 'shopping', 'angular']
       },
       {

@@ -17,6 +17,9 @@ angular.module('tasksApp').controller('RenderTasksController',
 
     $scope.toggleTaskCompleted = function(task, index) {
       task.completed = !task.completed;
+      if (task.completed) {
+        task.completedDate = new Date();
+      }
       TasksService.update(task);
       if (!FiltersService.showingCompletedTasks()) {
         $scope.tasks.splice(index, 1);

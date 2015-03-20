@@ -74,8 +74,14 @@ Use custom buildpack, to include node
     docker push danpersa/hipdo
     docker pull danpersa/hipdo
 
+### Local Storage Place
+
+    ~/Library/Application Support/Google/Chrome/Default/Local Storage
+
 ### TODO
 
+ * fix how the dates are handled... right now we add an int for a date after setting the completed date
+ * add completed date
  * task sorting by tag group
  * reordering tasks - not really possible as the tasks are filters
  * reordering tasks in groups (moving one task from one group to another) ?? not really possible
