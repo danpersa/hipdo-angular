@@ -8,8 +8,9 @@ angular.module('tasksApp').service('TasksService',
         id: 1,
         name: 'Preprare for your birthday',
         description: 'Buy presents for christmas',
-        dueDate: new Date(2015, 4, 2, 0, 0, 0, 0),
+        dueDate: '2015-04-02',
         completed: true,
+        completedDate: '2015-02-03',
         tags: ['monday', 'shopping']
 
       },
@@ -17,7 +18,7 @@ angular.module('tasksApp').service('TasksService',
         id: 2,
         name: 'Solve the car insurance papers',
         description: '',
-        dueDate: new Date(2015, 11, 15, 0, 0, 0, 0),
+        dueDate: '2015-11-15',
         completed: false,
         tags: ['tuesday', 'shopping', 'car']
 
@@ -26,7 +27,7 @@ angular.module('tasksApp').service('TasksService',
         id: 3,
         name: 'Buy presents for Christmas',
         description: 'Buy presents for christmas',
-        dueDate: new Date(2014, 12, 16, 0, 0, 0, 0),
+        dueDate: '2014-12-16',
         completed: false,
         tags: ['tuesday', 'shopping', 'angular']
       },
@@ -34,7 +35,7 @@ angular.module('tasksApp').service('TasksService',
         id: 4,
         name: 'Go swimming tuesday',
         description: 'Go swimming',
-        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
+        dueDate: '2015-04-22',
         completed: false,
         tags: ['tuesday', 'shopping', 'angular']
       },
@@ -42,7 +43,7 @@ angular.module('tasksApp').service('TasksService',
         id: 5,
         name: 'Go swimming thursday',
         description: 'Go swimming',
-        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
+        dueDate: '2015-04-22',
         completed: false,
         tags: ['thursday', 'shopping', 'angular']
       },
@@ -50,18 +51,17 @@ angular.module('tasksApp').service('TasksService',
         id: 6,
         name: 'Go swimming sunday',
         description: 'Go swimming',
-        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
+        dueDate: '2015-04-22',
         completed: true,
-        completedDate: new Date(2015, 4, 22, 0, 0, 0, 0),
-        tags: ['sunday', 'shopping', 'angular']
+        completedDate: '2015-03-08',
+        tags: ['sunday', 'angular']
       },
       {
         id: 7,
         name: 'Go swimming monday',
         description: 'Go swimming',
-        dueDate: new Date(2015, 4, 22, 0, 0, 0, 0),
         completed: false,
-        tags: ['monday', 'shopping', 'angular']
+        tags: ['monday', 'shopping']
       }
     ];
 

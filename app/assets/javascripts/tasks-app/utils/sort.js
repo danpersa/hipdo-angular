@@ -65,7 +65,7 @@ var SortingByDueDate = function() {
     console.log('Sorting By Due Date ' + dir);
 
     function compare(task1, task2) {
-      var result = task1.dueDate > task2.dueDate;
+      var result = dateOnlyFromString(task1.dueDate).isBefore(dateOnlyFromString(task2.dueDate));
       return dir === DESC ? !result : result;
     };
 

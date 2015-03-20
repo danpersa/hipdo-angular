@@ -13,8 +13,9 @@
       "angular-xeditable": "latest",
       "ng-sortable": "latest",
       "immutable": "latest",
-      "immutable": "latest",
-      "angular-local-storage": "latest"
+      "angular-local-storage": "latest",
+      "moment": "latest",
+      "moment-timezone": "latest"
     }
   }
 }

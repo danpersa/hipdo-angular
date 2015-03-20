@@ -8,7 +8,6 @@ angular.module('tasksApp').controller('RenderTasksController',
     }
 
     $scope.updateDueDate = function(task, index) {
-      task.dueDate = Date.parse(task.dueDate);
       TasksService.update(task);
       if (!FiltersService.showingPastTasks() && TasksService.isPastTask(task)) {
         $scope.tasks.splice(index, 1);
@@ -18,7 +17,7 @@ angular.module('tasksApp').controller('RenderTasksController',
     $scope.toggleTaskCompleted = function(task, index) {
       task.completed = !task.completed;
       if (task.completed) {
-        task.completedDate = new Date();
+        task.completedDate = dateOnlyNowAsString();
       }
       TasksService.update(task);
       if (!FiltersService.showingCompletedTasks()) {

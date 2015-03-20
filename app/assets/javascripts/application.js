@@ -14,6 +14,8 @@
 //----=----- require jquery_ujs
 //= require jquery/dist/jquery
 //= require jquery-ui/ui/datepicker
+//= require moment/min/moment-with-locales
+//= require moment-timezone/builds/moment-timezone-with-data
 //= require angular/angular
 //= require angular-route/angular-route
 //= require angular-animate/angular-animate

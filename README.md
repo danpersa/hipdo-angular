@@ -80,7 +80,6 @@ Use custom buildpack, to include node
 
 ### TODO
 
- * fix how the dates are handled... right now we add an int for a date after setting the completed date
  * add completed date
  * task sorting by tag group
  * reordering tasks - not really possible as the tasks are filters
@@ -89,5 +88,3 @@ Use custom buildpack, to include node
  * remove tags from tasks
  * list tags of a task
  * edit group name
-
-

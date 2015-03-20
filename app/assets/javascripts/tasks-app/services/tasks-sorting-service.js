@@ -7,15 +7,15 @@ angular.module('tasksApp').service('TasksSortingService',
     if (angular.isDefined($routeParams.sortBy) && $routeParams.sortBy !== null && $routeParams.sortBy !== '' ) {
       this.sortBy = $routeParams.sortBy;
     }
-    if (angular.isDefined($routeParams.direction) && $routeParams.direction !== null && $routeParams.direction !== '' ) {
-      this.direction = $routeParams.direction;
+    if (angular.isDefined($routeParams['dir']) && $routeParams['dir'] !== null && $routeParams['dir'] !== '' ) {
+      this.direction = $routeParams['dir'];
     }
     console.log('Sort by: [' + this.sortBy + '] dir: [' + this.direction + ']');
   }
 
   this.sort = function(tasks) {
     var tagGroupKeys = TagGroupsService.keys();
-    
+
     if (this.sortBy === 'dueDate') {
       var sorting = new Sorting(new SortingByDueDate());
       return sorting.sort(tasks, this.direction);

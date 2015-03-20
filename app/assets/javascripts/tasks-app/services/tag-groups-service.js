@@ -83,7 +83,6 @@ angular.module('tasksApp').service('TagGroupsService', function(localStorageServ
     var tagGroups = this.tagGroups;
     var result = list.withMutations(function(list) {
       angular.forEach(tagGroups, function(tagGroup) {
-        console.log('push key: ' + tagGroup.key);
         this.push(tagGroup.key);
       }, list);
     });

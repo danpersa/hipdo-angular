@@ -27,11 +27,23 @@ function isTaskCompleted(task) {
 }
 
 function isPastTask(task) {
-  return task.dueDate < new Date();
+  return dateOnlyFromString(task.dueDate).isBefore(dateOnlyNow());
 }
 
 
 function taskString(task) {
   return 'Task id: [' + task.id + '] name: [' + task.name + '] description: ['
     + task.description + '] dueDate: [' + task.dueDate + '] tags: [' + task.tags + ']';
+}
+
+function dateOnlyFromString(dateOnlyString) {
+  return moment(dateOnlyString, 'YYYY-MM-DD');
+}
+
+function dateOnlyNowAsString() {
+  return dateOnlyNow().format('YYYY-MM-DD');
+}
+
+function dateOnlyNow() {
+  return moment(moment().format('YYYY-MM-DD'));
 }
