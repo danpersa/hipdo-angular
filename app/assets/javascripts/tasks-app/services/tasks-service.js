@@ -9,7 +9,6 @@ angular.module('tasksApp').service('TasksService',
         name: 'Preprare for your birthday',
         description: 'Buy presents for christmas',
         dueDate: '2015-04-02',
-        completed: true,
         completedDate: '2015-02-03',
         tags: ['monday', 'shopping']
 
@@ -19,7 +18,6 @@ angular.module('tasksApp').service('TasksService',
         name: 'Solve the car insurance papers',
         description: '',
         dueDate: '2015-11-15',
-        completed: false,
         tags: ['tuesday', 'shopping', 'car']
 
       },
@@ -28,7 +26,6 @@ angular.module('tasksApp').service('TasksService',
         name: 'Buy presents for Christmas',
         description: 'Buy presents for christmas',
         dueDate: '2014-12-16',
-        completed: false,
         tags: ['tuesday', 'shopping', 'angular']
       },
       {
@@ -36,7 +33,6 @@ angular.module('tasksApp').service('TasksService',
         name: 'Go swimming tuesday',
         description: 'Go swimming',
         dueDate: '2015-04-22',
-        completed: false,
         tags: ['tuesday', 'shopping', 'angular']
       },
       {
@@ -44,7 +40,6 @@ angular.module('tasksApp').service('TasksService',
         name: 'Go swimming thursday',
         description: 'Go swimming',
         dueDate: '2015-04-22',
-        completed: false,
         tags: ['thursday', 'shopping', 'angular']
       },
       {
@@ -52,7 +47,6 @@ angular.module('tasksApp').service('TasksService',
         name: 'Go swimming sunday',
         description: 'Go swimming',
         dueDate: '2015-04-22',
-        completed: true,
         completedDate: '2015-03-08',
         tags: ['sunday', 'angular']
       },
@@ -60,7 +54,6 @@ angular.module('tasksApp').service('TasksService',
         id: 7,
         name: 'Go swimming monday',
         description: 'Go swimming',
-        completed: false,
         tags: ['monday', 'shopping']
       }
     ];

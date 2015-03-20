@@ -34,36 +34,6 @@ angular.module('tasksApp').controller('GroupedTasksController',
     $scope.taskNames[tag] = "";
   }
 
-  $scope.updateDueDate = function(task, index) {
-    task.dueDate = Date.parse(task.dueDate);
-    TasksService.update(task);
-    this.init();
-  }
-
-  $scope.deleteTask = function(task, index) {
-    console.log("Delete task index: " + index);
-    TasksService.delete(task);
-    this.init();
-  }
-
-  $scope.updateTaskDescription = function(task, newTaskDescription) {
-    console.log('Update Task Description: [' + newTaskDescription + '] old task name: ' + task.description);
-    task.description = newTaskDescription;
-    TasksService.update(task);
-  }
-
-  $scope.removeTagFromTask = function(task, index, tag, groupTag) {
-    TasksService.removeTagFromTask(task, tag);
-    this.init();
-  }
-
-  $scope.toggleTaskCompleted = function(task, index) {
-    task.completed = !task.completed;
-    TasksService.update(task);
-    this.init();
-  }
-
-
   $scope.toggleShowCompletedTasks = function() {
     FiltersService.toggleShowCompletedTasks();
     this.init();

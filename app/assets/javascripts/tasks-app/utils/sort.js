@@ -65,7 +65,21 @@ var SortingByDueDate = function() {
     console.log('Sorting By Due Date ' + dir);
 
     function compare(task1, task2) {
-      var result = dateOnlyFromString(task1.dueDate).isBefore(dateOnlyFromString(task2.dueDate));
+      var result = dateOnlyFromString(task1.dueDate).isAfter(dateOnlyFromString(task2.dueDate));
+      return dir === DESC ? !result : result;
+    };
+
+    return tasks.sort(compare);
+  }
+}
+
+var SortingByCompletedDate = function() {
+
+  this.sort = function(tasks, dir) {
+    console.log('Sorting By Completed Date ' + dir);
+
+    function compare(task1, task2) {
+      var result = dateOnlyFromString(task1.completedDate).isAfter(dateOnlyFromString(task2.completedDate));
       return dir === DESC ? !result : result;
     };
 

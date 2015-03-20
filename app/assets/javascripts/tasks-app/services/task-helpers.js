@@ -1,5 +1,5 @@
 function isFiltered(task, showCompletedTasks, showPastTasks, selectedTags) {
-  if ((showCompletedTasks || !isTaskCompleted(task))
+  if ((showCompletedTasks || (!showCompletedTasks && !isTaskCompleted(task)))
     && (showPastTasks || !isPastTask(task))
     && (noTagsSelected(selectedTags) || taskHasSelectedTag(task, selectedTags))) {
     return false;
@@ -23,7 +23,7 @@ function taskHasSelectedTag(task, selectedTags) {
 }
 
 function isTaskCompleted(task) {
-  return task.completed;
+  return task.completedDate !== undefined && task.completedDate !== null && task.completedDate !== '';
 }
 
 function isPastTask(task) {

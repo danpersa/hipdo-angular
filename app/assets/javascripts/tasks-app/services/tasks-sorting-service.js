@@ -21,6 +21,11 @@ angular.module('tasksApp').service('TasksSortingService',
       return sorting.sort(tasks, this.direction);
     }
 
+    if (this.sortBy === 'completedDate') {
+      var sorting = new Sorting(new SortingByCompletedDate());
+      return sorting.sort(tasks, this.direction);
+    }
+
     console.log('Tag Group Keys: [' + tagGroupKeys + ']');
 
     if (tagGroupKeys.contains(this.sortBy)) {

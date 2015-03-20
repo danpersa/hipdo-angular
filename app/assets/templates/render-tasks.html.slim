@@ -7,11 +7,13 @@ ul.list-group
       .col-md-9.col-sm-8.col-xs-12
         .row
           .col-md-12
-            a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completed}" {{ task.name || "empty" }}
+            a.task-name href="#" editable-text="task.name" onbeforesave="updateTaskName(task, $data)" ng-class="{completed: task.completedDate}" {{ task.name || "empty" }}
             small.task-date(ng-show="task.dueDate")
               ' Due date: {{task.dueDate | date : 'yyyy-MM-dd' }}
             small.task-date(ng-hide="task.dueDate")
               ' No due date
+            small.task-date(ng-show="task.completedDate")
+              ' (Completed on: {{task.completedDate | date : 'yyyy-MM-dd' }})
         .row
           .col-ma-12
             .bootstrap-tagsinput.tagsinput
@@ -22,7 +24,7 @@ ul.list-group
       .col-md-3.col-sm-4.col-xs-12
         .task-buttons.pull-right
           .btn-group(role="group")
-            button.btn(type="button" ng-click="toggleTaskCompleted(task, $index)" ng-class="{'btn-success': task.completed, 'btn-default': !task.completed}")
+            button.btn(type="button" ng-click="toggleTaskCompleted(task, $index)" ng-class="{'btn-success': task.completedDate, 'btn-default': !task.completedDate}")
               span.glyphicon.glyphicon-ok
             calendar(model="task.dueDate" on-change="updateDueDate(task, $index)")
               span.glyphicon.glyphicon-time

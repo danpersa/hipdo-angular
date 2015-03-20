@@ -15,12 +15,13 @@ angular.module('tasksApp').controller('RenderTasksController',
     }
 
     $scope.toggleTaskCompleted = function(task, index) {
-      task.completed = !task.completed;
-      if (task.completed) {
+      if (task.completedDate !== undefined && task.completedDate !== null && task.completedDate !== '') {
+        task.completedDate = null;
+      } else {
         task.completedDate = dateOnlyNowAsString();
       }
       TasksService.update(task);
-      if (!FiltersService.showingCompletedTasks()) {
+      if (task.completedDate && !FiltersService.showingCompletedTasks()) {
         $scope.tasks.splice(index, 1);
       }
     }
