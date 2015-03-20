@@ -51,4 +51,3 @@ USER app
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
 USER root
-

@@ -61,7 +61,8 @@ Use custom buildpack, to include node
 
 ### Docker
 
-    docker run dpersa/hipdo:v1
+    docker run -p 80:80 dpersa/hipdo:v1
+    docker run -i -p 80:80 -t danpersa/hipdo:devel /bin/bash
 
     docker exec -t -i YOUR-CONTAINER-ID bash -l
 
@@ -69,6 +70,9 @@ Use custom buildpack, to include node
     passenger-memory-stats
 
     boot2docker ip
+
+    docker push danpersa/hipdo
+    docker pull danpersa/hipdo
 
 ### TODO
 
