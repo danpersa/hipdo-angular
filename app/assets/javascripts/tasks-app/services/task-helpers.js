@@ -27,7 +27,7 @@ function isTaskCompleted(task) {
 }
 
 function isPastTask(task) {
-  return dateOnlyFromString(task.dueDate).isBefore(dateOnlyNow());
+  return task.dueDate !== undefined && task.dueDate !== null && task.dueDate !== '' && dateOnlyFromString(task.dueDate).isBefore(dateOnlyNow());
 }
 
 
